@@ -52,13 +52,48 @@
 #         - get_player_answer: Collects and returns the player's answer.
 #         - display_scores: Displays the scores of both players after each turn.
 
-#  5. Main Program:
-    
-     - Role: The main program initializes and orchestrates the game, creating instances of the Game class and possibly the User Interface class.
+#  5. Main Program: 
+    #  - Role: The main program initializes and orchestrates the game, creating instances of the Game class and possibly the User Interface class.
 
-     - Additional Considerations:
-       - The Game class will contain the game loop where players take turns.
-       - The Game class will manage who the current player is by calling switch_player.
-       - The User Interface class (if used) will handle user input/output and will interact with the Game class.
+    #  - Additional Considerations:
+    #    - The Game class will contain the game loop where players take turns.
+    #    - The Game class will manage who the current player is by calling switch_player.
+    #    - The User Interface class (if used) will handle user input/output and will interact with the Game class.
 
 
+
+    require_relative 'math_question'  # Include the MathQuestion class 
+    require_relative 'player'
+    require_relative 'math_question'
+    require_relative 'game'
+    require_relative 'user_interface' #for User Interface
+
+
+  
+
+# Create a MathQuestion
+question = MathQuestion.new
+
+# Display the question to the player
+puts question.question
+
+# Check the player's answer
+user_answer = gets.chomp
+if question.check_answer(user_answer)
+  puts "Correct!"
+else
+  puts "Incorrect!"
+end
+
+# Create two players
+player1 = Player.new("Player 1")
+player2 = Player.new("Player 2")
+
+# Create a Game with the two players and start the game
+game = Game.new(player1, player2)
+game.start_game
+
+# Optional: If you have a User Interface class, you can use it like this:
+# UserInterface.display_question(question)
+# user_answer = UserInterface.get_player_answer
+# UserInterface.display_scores(game.player_scores)
